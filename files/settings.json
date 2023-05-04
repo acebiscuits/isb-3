@@ -1,0 +1,3 @@
+{"initial_file": "files/initial_file.txt", "encrypted_file": "files/encrypted_file.json", "decrypted_file": "files/decrypted_file.txt",
+ "symmetric_key": "keys/symmetric_key.json", "encrypred_symmetric_key": "keys/encrypred_symmetric_key.json", 
+ "public_key": "keys/public_key.pem", "private_key": "keys/private_key.pem", "initial_vector": "keys/initial_vector.json"}
