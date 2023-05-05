@@ -2,37 +2,32 @@ import argparse
 from decrypting import decrypting
 from encrypting import encrypting
 from generating_keys import generating_keys
-from serialisation_to_json import deserialisation_from_json
-import os
 import json
 import logging
 from tqdm import tqdm
 
+
 if __name__ == "__main__":   
     logging.basicConfig(level=logging.INFO)
-
-
-
-    #if not os.path.isdir('texts'):
-        #os.mkdir('texts') 
-        #os.mkdir('keys')
     parser = argparse.ArgumentParser()
     parser.add_argument('-s','--settings_path',default='files\\settings.json',help='Путь к json файлу с путями, default = files\\settings.json', action='store')
     group = parser.add_mutually_exclusive_group(required = True)
     group.add_argument('-gen','--generation',help='Запускает режим генерации ключей', action="store_true")
     group.add_argument('-enc','--encryption',help='Запускает режим шифрования', action="store_true")
     group.add_argument('-dec','--decryption',help='Запускает режим дешифрования', action="store_true")
-    
     args = parser.parse_args()
-    print(args)
+    logging.info(args)
     settings_path = args.settings_path
+
     try:
         with open(settings_path) as jf:
             settings = json.load(jf)
     except FileNotFoundError:
         logging.error(f"{settings_path} not found")
+
     mode = (args.generation, args.encryption, args.decryption)
-    print(mode)
+    logging.info(mode)
+
     match mode:
         case (True, False, False):
             with tqdm(total=4) as pbar:
